@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="App">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <link href="style/style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <br />
+
+        <div class="jumbotron">
+            <h1>CARRITO ANGULARJS</h1>
+        </div>
+
+        <div ng-controller="ControlCarrito">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre Producto</th>
+                        <th>Precio Unidad</th>
+                        <th>Precio Final</th>
+                        <th>Cantidad</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="product in products">
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price | currency : value="€" }}</td>
+                        <td>{{ product.price * product.qty | currency : value="€" }}</td>
+                        <td><input type="text" class="form-control" ng-model="product.qty"></td>
+                        <td><button type="button" class="btn btn-danger" ng-click="remove($index)">Borrar</button></td>
+                    </tr>
+                </tbody>
+                <br>
+                <tbody>
+                    <tr>
+                        <td><input type="text" class="form-control" ng-model="nombreN"></td>
+                        <td><input size="1" type="text" class="form-control" ng-model="precioN"></td>
+                        <td></td>
+                        <td><input type="text" class="form-control" ng-model="cantidadN"></td>
+                        <td><button type="button" class="btn btn-danger" ng-click="add(nombreN,precioN,cantidadN)">Añadir</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="well">
+                <p>Total <b>{{ totalCart() | currency : value="€" }}</b></p>
+                <p>Descuento <b>{{ bill.discount | currency : value="€"}}</b></p>
+                <p>Subtotal <b>{{ subtotal() | currency : value="€" }}</b></p>
+            </div>
+        </div>
+    </div>
+    <!-- SCRIPTS EN EL BODY HACEN QUE LA PAGINA CARGE ANTES -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="function.js"></script>
+
+</body>
+
+</html>
